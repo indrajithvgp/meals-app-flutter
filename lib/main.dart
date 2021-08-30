@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:meals_app/categories_screen.dart';
-import 'package:meals_app/category_meals_screen.dart';
+import 'package:meals_app/screens/categories_screen.dart';
+import 'package:meals_app/screens/category_meals_screen.dart';
+import 'package:meals_app/screens/meal_detail_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,11 +11,11 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    print(context);
+    // print(context);
     return MaterialApp(
       title: 'Finger Lickin',
       theme: ThemeData(
-          primarySwatch: Colors.pink,
+          primarySwatch: Colors.blue,
           accentColor: Colors.amber,
           canvasColor: Color.fromRGBO(255, 254, 229, 1),
           fontFamily: "Raleway",
@@ -26,7 +27,20 @@ class MyApp extends StatelessWidget {
                   fontFamily: "RobotoCondensed",
                   fontWeight: FontWeight.bold))),
       home: CategoriesScreen(),
-      routes: {"/category-meals": (context) => CategoryMealsScreen()},
+      // initialRoute: "/",
+      routes: {
+        // "/": (context) => CategoriesScreen(),//its not working -- null problem
+        CategoryMealsScreen.routeName: (context) => CategoryMealsScreen(),
+        MealDetailScreen.routeName: (context) => MealDetailScreen(),
+      },
+      // onGenerateRoute: (settings) {
+      //   print(settings.arguments);
+      //   if(settings.name == "/"){
+      //     return ...;
+      //   }
+
+      //   return MaterialPageRoute(builder: (ctx) => CategoryMealsScreen());
+      // },
     );
   }
 }
